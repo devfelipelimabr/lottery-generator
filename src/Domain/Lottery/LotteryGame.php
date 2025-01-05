@@ -7,7 +7,8 @@ abstract class LotteryGame
     protected string $name;
     protected int $minNumber;
     protected int $maxNumber;
-    protected int $numbersToGenerate;
+    protected int $minNumbersToSelect;
+    protected int $maxNumbersToSelect;
 
     public function getName(): string
     {
@@ -24,8 +25,19 @@ abstract class LotteryGame
         return $this->maxNumber;
     }
 
-    public function getNumbersToGenerate(): int
+    public function getMinNumbersToSelect(): int
     {
-        return $this->numbersToGenerate;
+        return $this->minNumbersToSelect;
+    }
+
+    public function getMaxNumbersToSelect(): int
+    {
+        return $this->maxNumbersToSelect;
+    }
+
+    public function validateQuantity(int $quantity): bool
+    {
+        return $quantity >= $this->minNumbersToSelect &&
+            $quantity <= $this->maxNumbersToSelect;
     }
 }

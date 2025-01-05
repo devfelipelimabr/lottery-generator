@@ -17,12 +17,17 @@ class LotteryController
     {
         try {
             $gameType = $_GET['game'] ?? '';
+            $quantity = (int)($_GET['quantity'] ?? 0);
 
             if (empty($gameType)) {
                 throw new \InvalidArgumentException('Tipo de jogo não especificado');
             }
 
-            $result = $this->service->generateNumbers($gameType);
+            if ($quantity <= 0) {
+                throw new \InvalidArgumentException('Quantidade de números não especificada');
+            }
+
+            $result = $this->service->generateNumbers($gameType, $quantity);
 
             header('Content-Type: application/json');
             echo json_encode($result);

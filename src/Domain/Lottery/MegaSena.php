@@ -9,6 +9,7 @@ class MegaSena extends LotteryGame
         $this->name = 'Mega-Sena';
         $this->minNumber = 1;
         $this->maxNumber = 60;
-        $this->numbersToGenerate = 6;
+        $this->minNumbersToSelect = 6;
+        $this->maxNumbersToSelect = 15;
     }
 }

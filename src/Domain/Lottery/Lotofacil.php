@@ -9,6 +9,7 @@ class Lotofacil extends LotteryGame
         $this->name = 'Lotofácil';
         $this->minNumber = 1;
         $this->maxNumber = 25;
-        $this->numbersToGenerate = 15;
+        $this->minNumbersToSelect = 15;
+        $this->maxNumbersToSelect = 20;
     }
 }

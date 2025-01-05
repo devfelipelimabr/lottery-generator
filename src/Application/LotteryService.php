@@ -16,15 +16,28 @@ class LotteryService
         $this->generator = new NumberGenerator();
     }
 
-    public function generateNumbers(string $gameType): array
+    public function generateNumbers(string $gameType, int $quantity): array
     {
         $game = $this->createGame($gameType);
-        $numbers = $this->generator->generate($game);
+
+        if (!$game->validateQuantity($quantity)) {
+            throw new \InvalidArgumentException(
+                "Quantidade inválida. O {$game->getName()} aceita de " .
+                    "{$game->getMinNumbersToSelect()} a {$game->getMaxNumbersToSelect()} números."
+            );
+        }
+
+        $numbers = $this->generator->generate($game, $quantity);
         sort($numbers);
 
         return [
             'game' => $game->getName(),
-            'numbers' => $numbers
+            'quantity' => $quantity,
+            'numbers' => $numbers,
+            'limits' => [
+                'min' => $game->getMinNumbersToSelect(),
+                'max' => $game->getMaxNumbersToSelect()
+            ]
         ];
     }
 
