@@ -1,0 +1,13 @@
+{
+  "name": "lottery/number-generator",
+  "description": "Lottery number generator application",
+  "type": "project",
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lottery\\": "src/"
+    }
+  }
+}
